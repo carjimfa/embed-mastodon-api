@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "mastodon-embed-timeline"
+  }
+}

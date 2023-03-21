@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" href="/styles.css">
+<h2>Hello <%= username %></h2>
+<div class="statuses">
+    <% for(var i=0; i < statuses.length; i++) { %>
+    <div class="statuses__status">
+        <% if(!statuses[i].reblog) { %>
+            <div class="statuses__status__author">
+                <div class="statuses__status__author__avatar">
+                    <img width="50" height="50" src="<%= statuses[i].account.avatar %>"/>
+                </div>
+                <div class="statuses__status__author__name">
+                    <a href="<%= statuses[i].account.url %>" target="_blank">
+                        <%= statuses[i].account.display_name %>
+                    </a>
+                    <span class="statuses__status__author__name__username">
+                        <%= statuses[i].account.username %>
+                    </span>
+                </div>
+            </div>
+            <div class="statuses__status__content"><%- statuses[i].content %></div>
+            <div class="statuses__status__meta">
+                <a href="<%= statuses[i].url %>" target="_blank">
+                    <%= new Date(statuses[i].created_at)
+                            .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                    %>
+                </a>
+            </div>
+        <% } else { %>
+                <div class="statuses__status__reposted"><%= username %> re-posted:</div>
+                <div class="statuses__status__author">
+                    <div class="statuses__status__author__avatar">
+                        <img width="50" height="50" src="<%= statuses[i].reblog.account.avatar %>"/>
+                    </div>
+                    <div class="statuses__status__author__name">
+                        <a href="<%= statuses[i].reblog.account.url %>" target="_blank">
+                            <%= statuses[i].reblog.account.display_name %>
+                        </a>
+                        <span class="statuses__status__author__name__username">
+                            <%= statuses[i].reblog.account.username %>
+                        </span>
+                    </div>
+                </div>
+            <div class="statuses__status__content"><%- statuses[i].reblog.content %></div>
+            <div class="statuses__status__meta">
+                <a href="<%= statuses[i].reblog.url %>" target="_blank">
+                    <%= new Date(statuses[i].reblog.created_at)
+                            .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                    %>
+                </a>
+            </div>
+        <% } %>
+    </div>
+    <% } %>
+</div>
+

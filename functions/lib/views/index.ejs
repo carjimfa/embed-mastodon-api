@@ -1,55 +1,74 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/styles.css">
-<h2>Hello <%= username %></h2>
-<div class="statuses">
-    <% for(var i=0; i < statuses.length; i++) { %>
-    <div class="statuses__status">
-        <% if(!statuses[i].reblog) { %>
-            <div class="statuses__status__author">
-                <div class="statuses__status__author__avatar">
-                    <img width="50" height="50" src="<%= statuses[i].account.avatar %>"/>
-                </div>
-                <div class="statuses__status__author__name">
-                    <a href="<%= statuses[i].account.url %>" target="_blank">
-                        <%= statuses[i].account.display_name %>
-                    </a>
-                    <span class="statuses__status__author__name__username">
-                        <%= statuses[i].account.username %>
-                    </span>
-                </div>
-            </div>
-            <div class="statuses__status__content"><%- statuses[i].content %></div>
-            <div class="statuses__status__meta">
-                <a href="<%= statuses[i].url %>" target="_blank">
-                    <%= new Date(statuses[i].created_at)
-                            .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-                    %>
-                </a>
-            </div>
-        <% } else { %>
-                <div class="statuses__status__reposted"><%= username %> re-posted:</div>
-                <div class="statuses__status__author">
-                    <div class="statuses__status__author__avatar">
-                        <img width="50" height="50" src="<%= statuses[i].reblog.account.avatar %>"/>
-                    </div>
-                    <div class="statuses__status__author__name">
-                        <a href="<%= statuses[i].reblog.account.url %>" target="_blank">
-                            <%= statuses[i].reblog.account.display_name %>
-                        </a>
-                        <span class="statuses__status__author__name__username">
-                            <%= statuses[i].reblog.account.username %>
-                        </span>
+<div class="container-fluid">
+    <h1><%= username %> statuses</h1>
+    <div class="list-group d-grid gap-2 border-0 w-auto">
+        <% for(var i=0; i < statuses.length; i++) { %>
+            <% if(!statuses[i].reblog) { %>
+                <div>
+                    <div class="list-group-item rounded-3 py-3">
+                        <div class="d-flex gap-3">
+                            <img class="rounded float-start" src="<%= statuses[i].account.avatar %>" height="50" width="50"/>
+                            <div class="d-flex gap-2 w-100 justify-content-between">
+                                <div class="d-flex flex-column gap-2 w-100 justify-content-between">
+                                    <a href="<%= statuses[i].account.url %>" target="_blank">
+                                        <h6 class="mb-0"><%= statuses[i].account.display_name %></h6>
+                                    </a>
+                                    <small><%= statuses[i].account.username %></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 py-3">
+                            <div class="d-flex gap-2 w-100 justify-content-between">
+                                <div>
+                                    <div><%- statuses[i].content %></div>
+                                    <small>
+                                        <a href="<%= statuses[i].url %>" target="_blank">
+                                            <%= new Date(statuses[i].created_at)
+                                                    .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                                            %>
+                                        </a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            <div class="statuses__status__content"><%- statuses[i].reblog.content %></div>
-            <div class="statuses__status__meta">
-                <a href="<%= statuses[i].reblog.url %>" target="_blank">
-                    <%= new Date(statuses[i].reblog.created_at)
-                            .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-                    %>
-                </a>
-            </div>
+                <% } else { %>
+                    <div>
+                        <div class="list-group-item rounded-3 py-3">
+                            <small><%= username %> re-posted:</small>
+                            <div class="d-flex gap-3 pt-3">
+                                <img class="rounded float-start" src="<%= statuses[i].reblog.account.avatar %>" height="50" width="50"/>
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <div>
+                                            <a href="<%= statuses[i].reblog.account.url %>" target="_blank">
+                                                <h6 class="mb-0"><%= statuses[i].reblog.account.display_name %></h6>
+                                            </a>
+                                            <small><%= statuses[i].reblog.account.username %></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 py-3">
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <div><%- statuses[i].reblog.content %></div>
+                                        <small>
+                                            <a href="<%= statuses[i].reblog.url %>" target="_blank">
+                                                <%= new Date(statuses[i].reblog.created_at)
+                                                        .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                                                %>
+                                            </a>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
         <% } %>
     </div>
-    <% } %>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

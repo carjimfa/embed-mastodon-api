@@ -7,12 +7,23 @@ a:visited {
     color: blue;
 }
 
+h1 {
+    font-size: 4em;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .statuses {
-    width: calc(330px + 2px + 16px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .statuses__status {
-    width: 100%;
+    width: calc(100% - 2px - 16px);
     border: 1px solid grey;
     margin: 8px 0;
     padding: 8px;
@@ -29,13 +40,12 @@ a:visited {
     flex-direction: column;
     justify-content: center;
     margin: 0px 8px;
-    font-size: 16px;
+    font-size: 2.5em;
 }
 
 .statuses__status__author__name__username {
     margin-top: 4px;
     color: grey;
-    font-size: 14px;
 }
 
 .statuses__status__meta {
@@ -56,6 +66,10 @@ a:visited {
     font-size: 10px;
     color: grey;
     margin: 8px 0;
+}
+
+.statuses__status__author__avatar img {
+    height: 100px;
 }
 
 .invisible {

@@ -1,23 +1,19 @@
 <html>
-    <%- include('header') -%>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 p-1">
-                    <div class="list-group d-grid gap-1 border-0 w-auto">
-                        <% for(var i=0; i < statuses.length; i++) { %>
-                            <% if(!statuses[i].reblog) {
-                                %><%-include('status', {status: statuses[i], isReblog: false})-%>
-                            <%
-                            } else {
-                            %><%-include('status', {status: statuses[i].reblog, isReblog: true})-%>
-                            <% } %>
-                        <% } %>
-                    </div>
-                </div>
-            </div>
+<%- include('head') -%>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Embed 🐘 timeline</h1>
+            <p>This is a simple tool that let's you embed your mastodon profile in your website. It exposes the public timeline of any user from any instance.</p>
         </div>
-        <%- include('footer') -%>
-    </body>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-4 col-xl-2">
+            <iframe src="http://127.0.0.1:5002/drapergiggs/mastodon.social" height="760"></iframe>
+        </div>
+    </div>
+</div>
+<%- include('footer') -%>
+</body>
 </html>
-

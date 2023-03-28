@@ -10,6 +10,10 @@ app.use(cors());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.get('', (req: any, res: any) => {
+    res.render('index')
+})
+
 app.get("/:username/:domain", async (req: any, res: any) => {
   const domain = req.params.domain;
   const username = req.params.username;
@@ -25,10 +29,6 @@ app.get("/:username/:domain", async (req: any, res: any) => {
           });
         });
   });
-});
-
-app.get("/", (req: any, res: any) => {
-  res.send("hooray, it works in index");
 });
 
 exports.app = functions.https.onRequest(app);

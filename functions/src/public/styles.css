@@ -11,71 +11,18 @@ h1 {
     font-size: 4em;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
-.statuses {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.statuses__status {
-    width: calc(100% - 2px - 16px);
-    border: 1px solid grey;
-    margin: 8px 0;
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.statuses__status__author {
-    display: flex;
-    flex-direction: row;
-}
-
-.statuses__status__author__name {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0px 8px;
-    font-size: 2.5em;
-}
-
-.statuses__status__author__name__username {
-    margin-top: 4px;
-    color: grey;
-}
-
-.statuses__status__meta {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 10px;
-    color: grey;
-}
-
-.statuses__status__meta a {
-    margin-top: 4px;
-    color: grey;
-    text-decoration: none;
-}
-
-.statuses__status__reposted {
-    font-size: 10px;
-    color: grey;
-    margin: 8px 0;
-}
-
-.statuses__status__author__avatar img {
-    height: 100px;
-}
-
 .invisible {
     display: none;
 }
 
 .ellipsis {
     text-overflow: ellipsis;
+}
+
+.list-group-item {
+    word-break: break-all;
+}
+
+.list-group-item+.list-group-item {
+    border-top-width: 1px !important;
 }

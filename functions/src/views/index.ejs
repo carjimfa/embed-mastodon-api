@@ -1,85 +1,23 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/styles.css">
-    </head>
+    <%- include('header') -%>
     <body>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 p-1">
                     <div class="list-group d-grid gap-1 border-0 w-auto">
                         <% for(var i=0; i < statuses.length; i++) { %>
-                            <% if(!statuses[i].reblog) { %>
-                                <div>
-                                    <div class="list-group-item rounded-3 py-3">
-                                        <div class="d-flex gap-3">
-                                            <img class="rounded float-start" src="<%= statuses[i].account.avatar %>" height="50" width="50"/>
-                                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                                <div class="d-flex flex-column gap-2 w-100 justify-content-between">
-                                                    <a href="<%= statuses[i].account.url %>" target="_blank">
-                                                        <h6 class="mb-0"><%= statuses[i].account.display_name %></h6>
-                                                    </a>
-                                                    <small><%= statuses[i].account.username %></small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex gap-3 py-3">
-                                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                                <div>
-                                                    <div><%- statuses[i].content %></div>
-                                                    <small>
-                                                        <a href="<%= statuses[i].url %>" target="_blank">
-                                                            <%= new Date(statuses[i].created_at)
-                                                                    .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-                                                            %>
-                                                        </a>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <% } else { %>
-                                <div>
-                                    <div class="list-group-item rounded-3 py-3">
-                                        <small><%= username %> re-posted:</small>
-                                        <div class="d-flex gap-3 pt-3">
-                                            <img class="rounded float-start" src="<%= statuses[i].reblog.account.avatar %>" height="50" width="50"/>
-                                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                                <div>
-                                                    <div>
-                                                        <a href="<%= statuses[i].reblog.account.url %>" target="_blank">
-                                                            <h6 class="mb-0"><%= statuses[i].reblog.account.display_name %></h6>
-                                                        </a>
-                                                        <small><%= statuses[i].reblog.account.username %></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex gap-3 py-3">
-                                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                                <div>
-                                                    <div><%- statuses[i].reblog.content %></div>
-                                                    <small>
-                                                        <a href="<%= statuses[i].reblog.url %>" target="_blank">
-                                                            <%= new Date(statuses[i].reblog.created_at)
-                                                                    .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-                                                            %>
-                                                        </a>
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <% if(!statuses[i].reblog) {
+                                %><%-include('status', {status: statuses[i], isReblog: false})-%>
+                            <%
+                            } else {
+                            %><%-include('status', {status: statuses[i].reblog, isReblog: true})-%>
                             <% } %>
                         <% } %>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <%- include('footer') -%>
     </body>
 </html>
 

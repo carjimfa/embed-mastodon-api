@@ -1,0 +1,30 @@
+<div class="list-group-item rounded-3 py-3">
+    <% if (isReblog) {%>
+        <small><%= username %> re-posted:</small>
+    <%}%>
+    <div class="d-flex gap-3">
+        <img class="rounded float-start" src="<%= status.account.avatar %>" height="50" width="50"/>
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div class="d-flex flex-column gap-2 w-100 justify-content-between">
+                <a href="<%= status.account.url %>" target="_blank">
+                    <h6 class="mb-0"><%= status.account.display_name %></h6>
+                </a>
+                <small><%= status.account.username %></small>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex gap-3 py-3">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+                <div><%- status.content %></div>
+                <small>
+                    <a href="<%= status.url %>" target="_blank">
+                        <%= new Date(status.created_at)
+                                .toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+                        %>
+                    </a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

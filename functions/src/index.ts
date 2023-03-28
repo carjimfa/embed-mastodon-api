@@ -19,7 +19,7 @@ app.get("/:username/:domain", async (req: any, res: any) => {
   axios.get(accountUrl).then((user: AxiosResponse<any>) => {
     axios.get(`${baseUrl}/accounts/${user.data.id}/statuses`)
         .then((statuses: AxiosResponse<any>) => {
-          res.render("index", {
+          res.render('timeline', {
             username: user.data.username,
             statuses: statuses.data,
           });

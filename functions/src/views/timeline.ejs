@@ -1,0 +1,23 @@
+<html>
+    <%- include('head') -%>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 p-1">
+                    <div class="list-group d-grid gap-1 border-0 w-auto">
+                        <% for(var i=0; i < statuses.length; i++) { %>
+                            <% if(!statuses[i].reblog) {
+                                %><%-include('status', {status: statuses[i], isReblog: false})-%>
+                            <%
+                            } else {
+                            %><%-include('status', {status: statuses[i].reblog, isReblog: true})-%>
+                            <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('footer') -%>
+    </body>
+</html>
+

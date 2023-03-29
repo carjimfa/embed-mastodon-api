@@ -10,9 +10,9 @@ app.use(cors());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.get('', (req: any, res: any) => {
-    res.render('index')
-})
+app.get("", (req: any, res: any) => {
+  res.render("index", {url: "https://mastodon-embed-timeline.web.app/"});
+});
 
 app.get("/:username/:domain", async (req: any, res: any) => {
   const domain = req.params.domain;
@@ -23,7 +23,7 @@ app.get("/:username/:domain", async (req: any, res: any) => {
   axios.get(accountUrl).then((user: AxiosResponse<any>) => {
     axios.get(`${baseUrl}/accounts/${user.data.id}/statuses`)
         .then((statuses: AxiosResponse<any>) => {
-          res.render('timeline', {
+          res.render("timeline", {
             username: user.data.username,
             statuses: statuses.data,
           });

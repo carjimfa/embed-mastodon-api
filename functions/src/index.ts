@@ -11,12 +11,18 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.get("", (req: any, res: any) => {
-  res.render("index", {url: "https://mastodon-embed-timeline.web.app/"});
+  res.render("index", {
+    url: "https://mastodon-embed-timeline.web.app/",
+    genericCodeExample: "&lt;iframe src=\"https://mastodon-embed-timeline.web.app/{username}/{domain}\"&gt;&lt;/iframe&gt;",
+    definedCodeExample: "&lt;iframe src=\"https://mastodon-embed-timeline.web.app/drapergiggs/mastodon.social\"&gt;&lt;/iframe&gt;",
+  });
 });
 
 app.get("/:username/:domain", async (req: any, res: any) => {
   const domain = req.params.domain;
   const username = req.params.username;
+  const color = req.query.color ?? "fff";
+  const titleColor = req.query.titleColor ?? "000";
   const baseUrl = `https://${domain}/api/v1`;
   const accountUrl = `${baseUrl}/accounts/lookup?acct=${username}`;
 
@@ -26,6 +32,8 @@ app.get("/:username/:domain", async (req: any, res: any) => {
           res.render("timeline", {
             username: user.data.username,
             statuses: statuses.data,
+            color,
+            titleColor,
           });
         });
   });

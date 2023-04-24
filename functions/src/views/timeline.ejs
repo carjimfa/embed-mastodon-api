@@ -1,11 +1,12 @@
 <html>
     <%- include('head') -%>
-    <body>
+    <body style="background-color: <%- color %>">
         <div class="container-fluid">
             <div class="row">
                 <div id="top-shadow" style="opacity: 0"></div>
                 <div class="col-12 p-1">
-                    <div class="list-group d-grid gap-1 border-0 w-auto">
+                    <h2 style="color: <%- titleColor %>">🐘 <%= username %> toots</h2>
+                    <div class="list-group border-0 rounded-3 w-auto">
                         <% for(var i=0; i < statuses.length; i++) { %>
                             <% if(!statuses[i].reblog) {
                                 %><%-include('status', {status: statuses[i], isReblog: false})-%>
@@ -41,6 +42,11 @@
                     showShadow("top")
                     showShadow("bottom")
                 }
+            }
+        </script>
+        <script>
+            goTo = function(url) {
+                window.open(url, '_blank');
             }
         </script>
         <%- include('footer') -%>

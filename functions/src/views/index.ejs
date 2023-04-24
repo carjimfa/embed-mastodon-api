@@ -13,6 +13,35 @@
             <iframe src="<%= url %>/drapergiggs/mastodon.social" height="560"></iframe>
         </div>
     </div>
+    <br/>
+    <div class="row code-example">
+        <div class="col-xs-12">
+            <h2>How to make it work</h2>
+            <p>The way to embed your timeline is:</p>
+            <p>
+                Example:
+                <br/>
+                <code>
+<%- genericCodeExample %>
+                </code>
+            </p>
+            <p>
+                Where <code>username</code> is your username and <code>domain</code> is your instance domain. In the case above I'm using:
+                <br/>
+                <code>
+<%- definedCodeExample %>
+                </code>
+            </p>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <h2>Options</h2>
+        <h3>Color</h3>
+        <p>You can pass a <code>color</code> option to set the background passing a CSS ready color like <code>black</code> or an hex like <code>000785</code></p>
+        <h3>Title Color</h3>
+        <p>You can pass a <code>titleColor</code> option to set the color of the title passing a CSS ready color like <code>black</code> or an hex like <code>ffffff</code></p>
+    </div>
 </div>
 <%- include('footer') -%>
 </body>

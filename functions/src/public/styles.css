@@ -7,6 +7,10 @@ a:visited {
     color: blue;
 }
 
+span.ellipsis::after {
+    content: '...';
+}
+
 h1 {
     font-size: 4em;
 }
@@ -20,11 +24,11 @@ h1 {
 }
 
 .list-group-item {
-    word-break: break-all;
+    word-break: break-word;
 }
 
-.list-group-item+.list-group-item {
-    border-top-width: 1px !important;
+.list-group-item-action {
+    cursor: pointer;
 }
 
 #top-shadow {
@@ -49,4 +53,28 @@ h1 {
     -moz-box-shadow: inset 0px -5px 5px 0px rgba(0,0,0,0.35);
     box-shadow: inset 0px -5px 5px 0px rgba(0,0,0,0.35);
     transition: opacity 0.2s ease-in-out;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    width: 100%;
+    max-width: 720px;
+}
+
+.image-grid__item .custom-placeholder {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 320px;
+}
+
+.image-grid__item .custom-placeholder:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.single-image img {
+    width: 100%;
 }
